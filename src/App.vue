@@ -1,7 +1,11 @@
 <template>
-    <header class="navbar">
-        <h1 class="navbar-item">3Kmfi6HP</h1>
-    </header>
+ <header class="navbar">
+
+  <h1 class="navbar-item">
+    <a href="https://github.com/3Kmfi6HP">3Kmfi6HP</a> 
+  </h1>
+
+</header>
 
     <main class="section">
         <h1 class="title">Deta.app cf ip remote check</h1>
