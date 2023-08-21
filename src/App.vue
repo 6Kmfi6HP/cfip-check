@@ -4,7 +4,7 @@
     </header>
 
     <main class="section">
-        <h1 class="title">EDtunnel cf ip remote check</h1>
+        <h1 class="title">Deta.app cf ip remote check</h1>
 
         <div class="columns">
 
@@ -39,12 +39,6 @@
                         </div>
                     </div>
 
-                    <div class="field">
-                        <label class="label">port</label>
-                        <div class="control">
-                            <input class="input" type="text" placeholder="Enter server port" v-model="port">
-                        </div>
-                    </div>
 
                     <button class="button is-primary">Submit</button>
 
@@ -66,8 +60,7 @@
 export default {
     data() {
         return {
-            servDomain: 'cdn.xn--b6gac.eu.org',
-            port: '443',
+            servDomain: 'cdn.xn--b6gac.eu.org:443',
             host: 'speed.cloudflare.com',
             result: '',
             tls: true
@@ -76,8 +69,15 @@ export default {
 
     methods: {
         onSubmit() {
+          let parts = this.servDomain.split(':')
+
+          let ip = parts[0]
+          let port = parts[1] || 443
+
+          console.log('IP:', ip)  
+          console.log('Port:', port)
           // ?ip=1.1.1.1&port=443&tls=true&host=cloudflare.com
-            const url = '/api?ip='+this.servDomain +'&host=' + this.host + '&port=' + this.port +'&tls='+ this.tls
+            const url = '/api?ip='+ ip +'&host=' + this.host + '&port=' + port +'&tls='+ this.tls
             // get site url 
             const siteUrl = window.location.origin;
 
@@ -88,7 +88,7 @@ export default {
                     response.text().then((data) => {
                         this.result = data;
                         // this.subscribe_url = siteUrl + url + '&format=base64';
-                        console.log("data" + data)
+                        console.log("data" + data + url)
                     });
                 })
                 .catch((err) => {
