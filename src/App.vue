@@ -4,7 +4,7 @@
     </header>
 
     <main class="section">
-        <h1 class="title">EDtunnel with render.com vless</h1>
+        <h1 class="title">EDtunnel cf ip remote check</h1>
 
         <div class="columns">
 
@@ -18,20 +18,18 @@
                         </div>
                     </div>
 
-                    <div class="field">
-                        <label class="label">sni</label>
-                        <div class="control">
-                            <input class="input" type="text" placeholder="Enter domain of cf worker or pages"
-                                v-model="sniDomain">
-                        </div>
+<div class="field">
+                    <label class="label">tls</label>
+                    <div class="control">
+                        <label>
+                            <input type="radio" name="tls" value="true" v-model="tls" checked/> 
+                            true
+                   
+                            <input type="radio" name="tls" value="false" v-model="tls" />
+                            false
+                        </label>
                     </div>
-
-                    <div class="field">
-                        <label class="label">uuid</label>
-                        <div class="control">
-                            <input class="input" type="text" placeholder="Enter worker vless uuid" v-model="uuid">
-                        </div>
-                    </div>
+                </div>
 
                     <div class="field">
                         <label class="label">host</label>
@@ -70,17 +68,16 @@ export default {
         return {
             servDomain: 'cdn.xn--b6gac.eu.org',
             port: '443',
-            sniDomain: 'edtunnel-render-outbound.pages.dev',
-            uuid: 'd342d11e-d424-4583-b36e-524ab1f0afa4',
-            host: 'edtunnel-render-outbound.pages.dev',
+            host: 'speed.cloudflare.com',
             result: '',
-            subscribe_url: ''
+            tls: true
         }
     },
 
     methods: {
         onSubmit() {
-            const url = '/api?serv=' + this.servDomain + '&sni=' + this.sniDomain + '&uuid=' + this.uuid + '&host=' + this.host + '&port=' + this.port
+          // ?ip=1.1.1.1&port=443&tls=true&host=cloudflare.com
+            const url = '/api?ip='+this.servDomain +'&host=' + this.host + '&port=' + this.port +'&tls='+ this.tls
             // get site url 
             const siteUrl = window.location.origin;
 
@@ -89,8 +86,8 @@ export default {
             })
                 .then((response) => {
                     response.text().then((data) => {
-                        this.result = '\n\n' + data.split('\n')[0];
-                        this.subscribe_url = siteUrl + url + '&format=base64';
+                        this.result = data;
+                        // this.subscribe_url = siteUrl + url + '&format=base64';
                         console.log("data" + data)
                     });
                 })

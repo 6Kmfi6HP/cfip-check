@@ -8,9 +8,9 @@ export default defineConfig({
     host: true,
     proxy: {
       '/api': {
-        target: 'https://render-quick-tunnel.cf10-57e.workers.dev',
+        target: 'https://cfport-1-a6278285.deta.app',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '/api/render_outbound'),
+        rewrite: path => path.replace(/^\/api/, '/check'),
         // headers: {}, // 移除原有的 header
         // selfHandleResponse: true, // 开启处理响应
         onProxyRes: (proxyRes) => {
