@@ -7,14 +7,15 @@ export async function onRequest(context) {
     next, // 用于中间件或获取资源
     data, // 在中间件之间传递数据的任意空间
   } = context;
+  const countryCode = request.cf.country;
+
+  if (countryCode === 'IR') { // Replace 'IR' with the country code you want to block
+    return new Response('Access denied', { status: 403 });
+  }
   // const newResponse = request.clone();
   const url = new URL(request.url);
-  const { searchParams } = new URL(request.url);
-  const headers_Origin = request.headers.get("Access-Control-Allow-Origin") || "*"
-
-  // console.log('https://api.openai.com' + url.pathname + url.search);
-
-  // const modifiedRequest = new Request('https://api.openai.com' + url.pathname + url.search, {
+  // const { searchParams } = new URL(request.url);
+  // const headers_Origin = request.headers.get("Access-Control-Allow-Origin") || "*"
   const modifiedRequest = new Request('https://cfport-1-a6278285.deta.app/check' + url.search, {
     method: request.method,
     headers: request.headers,
@@ -22,13 +23,13 @@ export async function onRequest(context) {
   });
   let body;
   const response = await fetch(modifiedRequest);
-  if (searchParams.get('format') === 'base64') {
-    body = btoa(await response.text());
-  } else {
-    body = response.body;
-  }
+  // if (searchParams.get('format') === 'base64') {
+  //   body = btoa(await response.text());
+  // } else {
+  body = response.body;
+  // }
   const modifiedResponse = new Response(body, response);
-  modifiedResponse.headers.set('Access-Control-Allow-Origin', headers_Origin);
+  // modifiedResponse.headers.set('Access-Control-Allow-Origin', headers_Origin);
 
   return modifiedResponse;
 }
