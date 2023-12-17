@@ -126,15 +126,15 @@ export default {
             const translatedKeys = {
                 clientip: "客户端 IP",
                 colo: "数据中心",
-                hostname: "主机名",
-                reverseip: "反向 IP",
-                location: "地理位置",
-                myip: "代理 IP",
+                h: "主机名",
+                ip: "反代 IP",
+                loc: "地理位置",
+                myip: "我的 IP",
                 origin: "回源端口",
                 proxyip: "是否PROXYIP",
                 reverse: "是否反代",
                 tls: "TLS",
-                time: "时间戳",
+                ts: "时间戳",
                 warp: "Warp 状态"
             };
             fetch(url, {
@@ -168,7 +168,7 @@ export default {
                             clientip: this.jsonData.clientip,
                             colo: this.jsonData.colo,
                             h: this.jsonData.h,
-                            reverseip: this.jsonData.ip,
+                            ip: this.jsonData.ip,
                             loc: this.jsonData.loc,
                             myip: this.jsonData.myip,
                             origin: this.jsonData.origin,
