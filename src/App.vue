@@ -2,13 +2,13 @@
     <header class="navbar">
 
         <h1 class="navbar-item">
-            <a href="https://github.com/3Kmfi6HP">3Kmfi6HP</a>
+            <a href="https://t.me/edtunnel">EDtunnel</a>
         </h1>
 
     </header>
 
     <main class="section">
-        <h1 class="title">Deta.app cf ip remote check</h1>
+        <h1 class="title">cf ip remote check</h1>
 
         <div class="columns">
 
@@ -50,8 +50,22 @@
 
             <div class="column">
                 <h5>Returned text:</h5>
-                <pre><a :href="subscribe_url" target="_blank">{{ subscribe_url }}</a>{{ result }}</pre>
-
+                <!-- <pre><a :href="subscribe_url" target="_blank">{{ subscribe_url }}</a>{{ result }}</pre> -->
+                <small><code><a :href="subscribe_url" target="_blank">{{ subscribe_url }}</a></code></small>
+                <!-- <h5>Returned JSON data:</h5> -->
+                <!-- <pre> -->
+                <!-- <table class="table"> -->
+                <div class="table-container">
+                    <table class="table is-fullwidth">
+                        <tbody>
+                            <tr v-for="(value, key) in filteredData" :key="key">
+                                <td>{{ key }}</td>
+                                <td>{{ value }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- </pre> -->
+                </div>
             </div>
 
         </div>
@@ -66,7 +80,8 @@ export default {
             servDomain: '',
             host: 'speed.cloudflare.com',
             result: '',
-            tls: true
+            tls: true,
+            filteredData: {}
         }
     },
     mounted() {
@@ -108,14 +123,69 @@ export default {
             const surl = '/?ip=' + ip + '&host=' + this.host + '&port=' + port + '&tls=' + this.tls
             // get site url 
             const siteUrl = window.location.origin;
-
+            const translatedKeys = {
+                clientip: "客户端 IP",
+                colo: "数据中心",
+                hostname: "主机名",
+                reverseip: "反向 IP",
+                location: "地理位置",
+                myip: "代理 IP",
+                origin: "回源端口",
+                proxyip: "是否PROXYIP",
+                reverse: "是否反代",
+                tls: "TLS",
+                time: "时间戳",
+                warp: "Warp 状态"
+            };
             fetch(url, {
                 method: "GET"
             })
                 .then((response) => {
-                    response.text().then((data) => {
-                        this.result = '\n\n' + data;
+                    response.json().then((data) => {
+                        this.result = '\n\n' + JSON.stringify(data);
                         this.subscribe_url = siteUrl + surl;
+                        this.jsonData = data; // 将获取的JSON数据存储到jsonData变量中
+                        // 剔除不需要的字段
+                        const {
+                            City,
+                            Country,
+                            PostalCode,
+                            Region,
+                            asOrganization,
+                            asn,
+                            fl,
+                            gateway,
+                            http,
+                            kex,
+                            sliver,
+                            sni,
+                            uag,
+                            visit_scheme
+                        } = this.jsonData;
+
+                        // 构建剩余字段的新对象
+                        this.filteredData = {
+                            clientip: this.jsonData.clientip,
+                            colo: this.jsonData.colo,
+                            hostname: this.jsonData.h,
+                            reverseip: this.jsonData.ip,
+                            location: this.jsonData.loc,
+                            myip: this.jsonData.myip,
+                            origin: this.jsonData.origin,
+                            proxyip: this.jsonData.proxyip,
+                            reverse: this.jsonData.reverse,
+                            tls: this.jsonData.tls,
+                            time: this.jsonData.ts,
+                            warp: this.jsonData.warp
+                        };
+                        // 构建剩余字段的新对象
+                        this.filteredData = Object.keys(data).reduce((acc, key) => {
+                            if (translatedKeys.hasOwnProperty(key)) {
+                                acc[translatedKeys[key]] = data[key];
+                            }
+                            return acc;
+                        }, {});
+
                         console.log("data" + data + url)
                     });
                 })
@@ -123,10 +193,6 @@ export default {
                     console.error(err);
                     this.result = err;
                 });
-            // this.$nextTick(() => {
-            //     this.$refs.form.submit()
-            //     return true;
-            // })
         },
 
     }
@@ -151,5 +217,14 @@ export default {
 
 pre {
     white-space: pre-wrap;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table td {
+    white-space: nowrap;
 }
 </style>
