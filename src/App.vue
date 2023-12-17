@@ -72,7 +72,7 @@ export default {
     mounted() {
         const params = new URLSearchParams(window.location.search)
         // if (params.has('ip')) {
-        this.ip = params.get('ip') || 'cdn.xn--b6gac.eu.org'
+        const ip = params.get('ip') || 'cdn.xn--b6gac.eu.org'
         // }
 
         // if (params.has('host')) {
@@ -81,7 +81,7 @@ export default {
 
         // if (params.has('port')) {
         const port = params.get('port') || 443
-        this.servDomain = params.get('ip') + ':' + port
+        this.servDomain = ip + ':' + port
         // }
 
         // if (params.has('tls')) {
