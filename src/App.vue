@@ -85,7 +85,7 @@ export default {
         // }
 
         // if (params.has('tls')) {
-        this.tls = params.get('tls') || 'true'
+        this.tls = params.get('tls') || true
         // }
         // if (this.ip && this.host && params.has('port') && this.tls) {
         // 执行提交逻辑
