@@ -167,15 +167,15 @@ export default {
                         this.filteredData = {
                             clientip: this.jsonData.clientip,
                             colo: this.jsonData.colo,
-                            hostname: this.jsonData.h,
+                            h: this.jsonData.h,
                             reverseip: this.jsonData.ip,
-                            location: this.jsonData.loc,
+                            loc: this.jsonData.loc,
                             myip: this.jsonData.myip,
                             origin: this.jsonData.origin,
                             proxyip: this.jsonData.proxyip,
                             reverse: this.jsonData.reverse,
                             tls: this.jsonData.tls,
-                            time: this.jsonData.ts,
+                            ts: this.jsonData.ts,
                             warp: this.jsonData.warp
                         };
                         // 构建剩余字段的新对象
