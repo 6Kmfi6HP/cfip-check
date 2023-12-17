@@ -46,17 +46,40 @@
                     <button class="button is-primary">Submit</button>
 
                 </form>
+                <br />
+                <article class="message is-dark">
+                    <div class="message-header">
+                        <p>Usage</p>
+                        <!-- <button class="delete" aria-label="delete"></button> -->
+                    </div>
+                    <div class="message-body">
+
+                        <p>
+                            这是一个 CF IP 远程检测工具。请输入服务器域名或 IP，选择 <strong>TLS</strong> 选项，并输入托管在 CF CDN 中的 <strong>HOST</strong>
+                            主机，然后点击提交按钮进行检测。
+                        </p>
+                        <p>
+                            This is a CF IP remote check tool. Enter the server domain or IP, select the
+                            <strong>TLS</strong>
+                            option, and enter the host (which must be the same as <strong>SNI</strong> in CF) to proceed
+                            with
+                            the check.
+                        </p>
+                    </div>
+                </article>
+
+
             </div>
 
             <div class="column">
-                <h5>Returned text:</h5>
+                <!-- <h5>Returned text:</h5> -->
+                <label class="label">INFO</label>
                 <!-- <pre><a :href="subscribe_url" target="_blank">{{ subscribe_url }}</a>{{ result }}</pre> -->
-                <small><code><a :href="subscribe_url" target="_blank">{{ subscribe_url }}</a></code></small>
                 <!-- <h5>Returned JSON data:</h5> -->
                 <!-- <pre> -->
                 <!-- <table class="table"> -->
                 <div class="table-container">
-                    <table class="table is-fullwidth">
+                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                         <tbody>
                             <tr v-for="(value, key) in filteredData" :key="key">
                                 <td>{{ key }}</td>
@@ -65,7 +88,11 @@
                         </tbody>
                     </table>
                     <!-- </pre> -->
+                    <small><a :href="subscribe_url" target="_blank">{{ subscribe_url }}</a></small>
+
                 </div>
+                <!-- <small><a :href="subscribe_url" target="_blank">{{ subscribe_url }}</a></small> -->
+
             </div>
 
         </div>
