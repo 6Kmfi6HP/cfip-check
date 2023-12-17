@@ -71,27 +71,28 @@ export default {
     },
     mounted() {
         const params = new URLSearchParams(window.location.search)
-        if (params.has('ip')) {
-            this.ip = params.get('ip')
-        }
+        // if (params.has('ip')) {
+        this.ip = params.get('ip') || 'cdn.xn--b6gac.eu.org'
+        // }
 
-        if (params.has('host')) {
-            this.host = params.get('host')
-        }
+        // if (params.has('host')) {
+        this.host = params.get('host') || "speed.cloudflare.com"
+        // }
 
-        if (params.has('port')) {
-            const port = params.get('port')
-            this.servDomain = params.get('ip') + ':' + port
-        }
+        // if (params.has('port')) {
+        const port = params.get('port') || 443
+        this.servDomain = params.get('ip') + ':' + port
+        // }
 
-        if (params.has('tls')) {
-            this.tls = params.get('tls')
-        }
-        if (this.ip && this.host && this.port && this.tls) {
-            // 执行提交逻辑
-            this.onSubmit()
-            this.$refs.form.submit()
-        }
+        // if (params.has('tls')) {
+        this.tls = params.get('tls') || 'true'
+        // }
+        // if (this.ip && this.host && params.has('port') && this.tls) {
+        // 执行提交逻辑
+        this.onSubmit()
+        this.$refs.form.submit()
+        // }
+
     },
     methods: {
         onSubmit() {
@@ -122,6 +123,10 @@ export default {
                     console.error(err);
                     this.result = err;
                 });
+            this.$nextTick(() => {
+                this.$refs.form.submit()
+                return true;
+            })
         },
 
     }
