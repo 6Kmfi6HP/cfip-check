@@ -90,7 +90,7 @@ export default {
         // if (this.ip && this.host && params.has('port') && this.tls) {
         // 执行提交逻辑
         this.onSubmit()
-        this.$refs.form.submit()
+        // this.$refs.form.submit()
         // }
 
     },
@@ -123,10 +123,10 @@ export default {
                     console.error(err);
                     this.result = err;
                 });
-            this.$nextTick(() => {
-                this.$refs.form.submit()
-                return true;
-            })
+            // this.$nextTick(() => {
+            //     this.$refs.form.submit()
+            //     return true;
+            // })
         },
 
     }
