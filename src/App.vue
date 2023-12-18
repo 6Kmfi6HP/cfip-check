@@ -119,15 +119,16 @@ export default {
 
         // if (params.has('host')) {
         this.host = params.get('host') || "speed.cloudflare.com"
+        this.tls = params.get('tls') || true
+
         // }
 
         // if (params.has('port')) {
-        const port = params.get('tls') === 'true' || params.get('tls') === true ? 443 : 80;
+        const port = this.tls === true || this.tls === false ? 80 : 443;
         this.servDomain = ip + ':' + port
         // }
 
         // if (params.has('tls')) {
-        this.tls = params.get('tls') || true
         // }
         // if (this.ip && this.host && params.has('port') && this.tls) {
         // 执行提交逻辑
