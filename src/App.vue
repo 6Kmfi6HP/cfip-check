@@ -123,7 +123,7 @@ export default {
         // }
 
         // if (params.has('port')) {
-        const port = params.has('port') || 443;
+        const port = params.has('port') || "443";
         this.servDomain = ip + ':' + port
         // }
         this.tls = params.get('tls') || true
