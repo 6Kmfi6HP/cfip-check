@@ -119,7 +119,6 @@ export default {
 
         // if (params.has('host')) {
         this.host = params.get('host') || "speed.cloudflare.com"
-        this.tls = params.get('tls') || true
 
         // }
 
@@ -127,6 +126,7 @@ export default {
         const port = params.has('port') || 443;
         this.servDomain = ip + ':' + port
         // }
+        this.tls = params.get('tls') || true
 
         // if (params.has('tls')) {
         // }
