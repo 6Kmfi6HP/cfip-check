@@ -88,7 +88,6 @@
                         </tbody>
                     </table>
                     <!-- </pre> -->
-                    <small><a :href="subscribe_url" target="_blank">{{ subscribe_url }}</a></small>
 
                 </div>
                 <!-- <small><a :href="subscribe_url" target="_blank">{{ subscribe_url }}</a></small> -->
