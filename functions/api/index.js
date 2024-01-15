@@ -9,7 +9,7 @@ export async function onRequest(context) {
   } = context;
   const countryCode = request.cf.country;
 
-  if (countryCode === 'IR') { // Replace 'IR' with the country code you want to block
+  if (countryCode === 'IR' || countryCode === 'RU' || countryCode === 'ID') { // Add more country codes as needed
     return new Response('Access denied', { status: 403 });
   }
   // const newResponse = request.clone();
