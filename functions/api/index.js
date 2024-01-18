@@ -9,7 +9,7 @@ export async function onRequest(context) {
   } = context;
   const countryCode = request.cf.country;
 
-  if (countryCode === 'IR' || countryCode === 'RU' || countryCode === 'ID' || countryCode === 'CN') { // Add more country codes as needed
+  if (countryCode === 'IR' || countryCode === 'RU' || countryCode === 'ID') { // Add more country codes as needed
     return new Response('Access denied', { status: 403 });
   }
   // const newResponse = request.clone();
