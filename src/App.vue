@@ -8,7 +8,7 @@
     </header>
 
     <main class="section">
-        <h1 class="title">cf ip remote check</h1>
+        <h1 class="title">CF IP remote Check</h1>
 
         <div class="columns">
 
@@ -151,7 +151,7 @@ export default {
             // get site url 
             const siteUrl = window.location.origin;
             const translatedKeys = {
-                clientip: "客户端 IP",
+                // clientip: "客户端 IP",
                 colo: "数据中心",
                 h: "主机名",
                 ip: "反代 IP",
@@ -192,7 +192,7 @@ export default {
 
                         // 构建剩余字段的新对象
                         this.filteredData = {
-                            clientip: this.jsonData.clientip,
+                            // clientip: this.jsonData.clientip,
                             colo: this.jsonData.colo,
                             h: this.jsonData.h,
                             ip: this.jsonData.ip,
