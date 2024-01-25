@@ -9,14 +9,14 @@ export async function onRequest(context) {
   } = context;
   const countryCode = request.cf.country;
 
-  if (countryCode === 'IR' || countryCode === 'RU' || countryCode === 'ID') { // Add more country codes as needed
-    return new Response('Access denied', { status: 403 });
-  }
+  // if (countryCode === 'IR' || countryCode === 'RU' || countryCode === 'ID') { // Add more country codes as needed
+  //   return new Response('Access denied', { status: 403 });
+  // }
   // const newResponse = request.clone();
   const url = new URL(request.url);
   // const { searchParams } = new URL(request.url);
   // const headers_Origin = request.headers.get("Access-Control-Allow-Origin") || "*"
-  const modifiedRequest = new Request('https://cfport-1-a6278285.deta.app/check' + url.search, {
+  const modifiedRequest = new Request('https://cfport-1-n2942152.deta.app/check' + url.search, {
     method: request.method,
     headers: request.headers,
     body: request.body,
