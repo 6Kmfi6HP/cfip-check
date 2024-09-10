@@ -263,9 +263,10 @@ export default {
           this.subscribe_url = siteUrl + surl;
           this.jsonData = data;
           this.filteredData = await this.processData(data);
+          const ipsbData = await this.fetchIpsbData(data.ip);
           this.mapData = {
-            latitude: data.Latitude,
-            longitude: data.Longitude
+            latitude: ipsbData.latitude,
+            longitude: ipsbData.longitude
           };
           // Use setTimeout to delay map initialization
           setTimeout(() => this.initMap(), 100);
