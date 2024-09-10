@@ -177,8 +177,8 @@ export default {
     const savedData = JSON.parse(localStorage.getItem('lastQuery')) || {}
     
     // 分离 IP 和端口
-    let ip = params.get('ip') || savedData.servDomain || '45.84.242.227'
-    let port = params.get('port') || savedData.port || "8443"
+    let ip = params.get('ip') || savedData.servDomain || 'speed.cloudflare.com'
+    let port = params.get('port') || savedData.port || "443"
 
     // 如果 IP 中已包含端口，则分离它们
     if (ip.includes(':')) {
