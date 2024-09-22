@@ -8,7 +8,7 @@ export default defineConfig({
     host: true,
     proxy: {
       '/api': {
-        target: 'https://cfport-1-a6278285.deta.app',
+        target: 'https://p01--boiling-frame--kw6dd7bjv2nr.code.run',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, '/check'),
         // headers: {}, // 移除原有的 header
